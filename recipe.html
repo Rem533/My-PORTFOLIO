@@ -3,25 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recipe 1 - omelette</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Recipe - Omelette</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Reset and base styles */
         body {
-            font-family: 'Times New Roman', Times, serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9;
+            background-color: #f0f0f0;
+            background-image: url('https://images.unsplash.com/photo-1495195134817-aeb325a55b65?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Zm9vZCUyMGJhY2tncm91bmR8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=1200&q=60');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            position: relative;
+            color: #333;
         }
+
+        /* Overlay for better text readability */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: -1;
+        }
+
+        /* Header styles */
         header {
             text-align: center;
             background-color: #333;
             color: white;
             padding: 20px 0;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
+
         header h1 {
             margin: 0;
-            font-size: 2em;
+            font-size: 2.5em;
+            color: #ff6b6b;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
+
+        /* Navigation styles with hover effect */
+        nav {
+            margin-top: 15px;
+        }
+
         nav ul {
             list-style-type: none;
             padding: 0;
@@ -29,56 +61,247 @@
             display: flex;
             justify-content: center;
         }
+
         nav ul li {
             margin: 0 15px;
         }
+
         nav ul li a {
             color: white;
             text-decoration: none;
             font-weight: bold;
+            font-size: 1.1em;
+            padding: 10px 15px;
+            transition: all 0.3s ease;
+            position: relative;
+            display: block;
         }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+            background-color: #ff6b6b;
+            transition: width 0.3s ease;
+        }
+
         nav ul li a:hover {
-            color: #007BFF;
+            color: #ff6b6b;
+            transform: translateY(-3px);
         }
-        section {
-            padding: 20px;
+
+        nav ul li a:hover::after {
+            width: 100%;
         }
+
+        /* Main content */
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
         h2 {
+            text-align: center;
+            font-size: 2.2em;
+            margin-bottom: 30px;
+            color: #ff6b6b;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: #ff6b6b;
+        }
+
+        /* Recipe content */
+        .recipe-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .recipe-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .recipe-info-item {
+            background-color: #f8f8f8;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px;
+            flex: 1;
+            min-width: 120px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .recipe-info-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .recipe-info-item i {
+            display: block;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            color: #ff6b6b;
+        }
+
+        /* Ingredients and Procedure */
+        .recipe-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .recipe-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .recipe-section {
+            background-color: #f8f8f8;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .recipe-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .recipe-section h3 {
+            font-size: 1.5em;
+            margin-top: 0;
+            margin-bottom: 20px;
             color: #333;
+            position: relative;
+            padding-bottom: 10px;
+            text-align: center;
         }
-        h3 {
-            color: #555;
+
+        .recipe-section h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 2px;
+            background-color: #ff6b6b;
         }
+
         ul, ol {
-            line-height: 1.6;
+            padding-left: 20px;
         }
-        footer {
+
+        li {
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        ul li {
+            list-style-type: none;
+            padding-left: 25px;
+        }
+
+        ul li:before {
+            content: '\f14a';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: #ff6b6b;
+        }
+
+        ol li {
+            padding-left: 10px;
+        }
+
+        /* Button styles */
+        .recipe-buttons {
             text-align: center;
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #333;
-            color: white;
+            margin: 40px 0 20px;
         }
-        .navigation-buttons {
-            text-align: center;
-            margin-top: 20px;
-        }
-        .navigation-buttons a {
-            text-decoration: none;
-        }
-        .navigation-buttons button {
-            background-color: #007BFF;
+
+        .btn {
+            display: inline-block;
+            background-color: #ff6b6b;
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 12px 25px;
+            margin: 10px;
             font-size: 1em;
-            border-radius: 5px;
+            font-weight: bold;
+            border-radius: 30px;
             cursor: pointer;
-            margin: 0 10px;
-            font-family: 'Times New Roman', Times, serif;
+            box-shadow: 0 4px 10px rgba(255, 107, 107, 0.3);
+            transition: all 0.3s ease;
+            text-decoration: none;
         }
-        .navigation-buttons button:hover {
-            background-color: #0056b3;
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 7px 15px rgba(255, 107, 107, 0.4);
+            background-color: #ff5252;
+        }
+
+        .btn i {
+            margin-right: 8px;
+        }
+
+        .btn-secondary {
+            background-color: #4e73df;
+            box-shadow: 0 4px 10px rgba(78, 115, 223, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background-color: #375cd0;
+            box-shadow: 0 7px 15px rgba(78, 115, 223, 0.4);
+        }
+
+        .btn-neutral {
+            background-color: #3F4E4F;
+            box-shadow: 0 4px 10px rgba(63, 78, 79, 0.3);
+        }
+
+        .btn-neutral:hover {
+            background-color: #2C3639;
+            box-shadow: 0 7px 15px rgba(63, 78, 79, 0.4);
+        }
+
+        /* Footer styles */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            margin-top: 30px;
         }
     </style>
 </head>
@@ -94,54 +317,83 @@
             </ul>
         </nav>
     </header>
-    <section>
-        <section class="Menu">
-            <h2>Omelette</h2>
-            <img src="Fluffy omelette with peppers, onion, spinach….jpeg" alt="Chicken Biryani image">
 
-            <h3>Ingredients for Omelette</h3>
-            <ul>
-                <li>1 tbsp / 15g butter</li>
-                <li>3 eggs</li>
-                <li>2 tbsp cream (or 1 ½ tbsp milk)</li>
-                <li>Salt and pepper</li>
-                <li>1/3 cup grated cheese</li>
-                <li>1 tbsp / 15g butter or olive oil</li>
-                <li>150 g / 5 oz mushrooms</li>
-                <li>1 small garlic clove , minced</li>
-                <li>Pinch of fresh thyme leaves and finely chopped parsley (optional)</li>
-            </ul>
-
-            <h3>Procedure for Omelette</h3>
-            <ol>
-                <li>Mushroom Filling: Melt butter in a medium or small non stick skillet over high heat. </li>
-                <li>Add mushrooms and cook until starting to go golden on the edges – about 1 ½ minutes. </li>
-                <li> Add garlic, salt and pepper, cook until golden – about 1 ½ minutes. Remove from skillet.</li>
-                <li><b>For the omellete,</b> Whisk eggs, cream, salt and pepper.</li>
-                <li>Cool skillet and lower heat to medium.</li>
-                <li>Add butter, then when it foams, add egg. Immediately give it a few stirs (as though you’re making scrambled eggs) then when the base just starts to set, spread it all out to cover the base  </li>
-                <li>Wait 20 - 30 seconds, then use a rubber spatula to lift up the edge, tilt pan to make the egg run off the surface under the omelette. Repeat 2 or 3 times around the edges of the omelette.</li>
-                <li>Sprinkle half the omelette with some of the cheese, top with mushrooms, sprinkle with thyme and parsley, top with remaining cheese.</li>
-                <li>Cover with lid and cook for 30 seconds or until the underside is light golden and top is just set – cheese won’t melt.</li>
-                <li>Fold omelette in half to cover mushrooms, transfer to serving plate immediately – residual heat will melt cheese.</li>
-            </ol>
-
-
-        </section>
-
-        <!-- Navigation Buttons -->
-        <div class="navigation-buttons">
-            <a href="menu.html">
-                <button>Go to Menu</button>
-            </a>
-            <a href="recipe2.html">
-                <button>Go to Pilau Recipe</button>
-            </a>
-            <button onclick="window.history.back()">Previous</button>
+    <div class="container">
+        <h2>Fluffy Omelette</h2>
+        
+        <img src="Fluffy omelette with peppers, onion, spinach….jpeg" alt="Fluffy Omelette" class="recipe-image">
+        
+        <div class="recipe-info">
+            <div class="recipe-info-item">
+                <i class="fas fa-clock"></i>
+                <p><strong>Prep Time</strong></p>
+                <p>5 mins</p>
+            </div>
+            <div class="recipe-info-item">
+                <i class="fas fa-fire"></i>
+                <p><strong>Cook Time</strong></p>
+                <p>10 mins</p>
+            </div>
+            <div class="recipe-info-item">
+                <i class="fas fa-utensils"></i>
+                <p><strong>Servings</strong></p>
+                <p>1 person</p>
+            </div>
+            <div class="recipe-info-item">
+                <i class="fas fa-chart-pie"></i>
+                <p><strong>Difficulty</strong></p>
+                <p>Easy</p>
+            </div>
         </div>
-    </section>
+        
+        <div class="recipe-content">
+            <div class="recipe-section">
+                <h3>Ingredients</h3>
+                <ul>
+                    <li>1 tbsp / 15g butter</li>
+                    <li>3 eggs</li>
+                    <li>2 tbsp cream (or 1 ½ tbsp milk)</li>
+                    <li>Salt and pepper</li>
+                    <li>1/3 cup grated cheese</li>
+                    <li>1 tbsp / 15g butter or olive oil</li>
+                    <li>150 g / 5 oz mushrooms</li>
+                    <li>1 small garlic clove, minced</li>
+                    <li>Pinch of fresh thyme leaves and finely chopped parsley (optional)</li>
+                </ul>
+            </div>
+            
+            <div class="recipe-section">
+                <h3>Procedure</h3>
+                <ol>
+                    <li>Mushroom Filling: Melt butter in a medium or small non-stick skillet over high heat.</li>
+                    <li>Add mushrooms and cook until starting to go golden on the edges – about 1 ½ minutes.</li>
+                    <li>Add garlic, salt and pepper, cook until golden – about 1 ½ minutes. Remove from skillet.</li>
+                    <li>For the omelette, whisk eggs, cream, salt and pepper.</li>
+                    <li>Cool skillet and lower heat to medium.</li>
+                    <li>Add butter, then when it foams, add egg. Immediately give it a few stirs, then when the base just starts to set, stop stirring.</li>
+                    <li>Sprinkle cheese in a line down the middle, top with mushrooms.</li>
+                    <li>Using a spatula, fold one side over the fillings, then the other side.</li>
+                    <li>Slide onto a plate. Garnish with herbs if desired and enjoy!</li>
+                </ol>
+            </div>
+        </div>
+        
+        <!-- Recipe Buttons -->
+        <div class="recipe-buttons">
+            <a href="menu.html" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Back to Menu
+            </a>
+            <a href="recipe2.html" class="btn">
+                <i class="fas fa-utensils"></i> View Beef Pilau Recipe
+            </a>
+            <a href="index.html" class="btn btn-neutral">
+                <i class="fas fa-home"></i> Back to Home
+            </a>
+        </div>
+    </div>
+
     <footer>
-        <p>&copy; 2025 My Portfolio</p>
+        © 2025 My Portfolio
     </footer>
 </body>
 </html>

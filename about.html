@@ -3,129 +3,603 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Me</title>
-    <link rel="stylesheet" href="style.css">
+    <title>✨ About Renjius | Microbiologist & Dev ✨</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --gradient-1: linear-gradient(to right, #FF6CAB, #7366FF);
+            --gradient-2: linear-gradient(to right, #00F5A0, #00D9F5);
+            --neon-pink: #FF6CAB;
+            --neon-purple: #7366FF;
+            --neon-blue: #00D9F5;
+            --neon-green: #00F5A0;
+        }
+        
         body {
-            font-family: 'Times New Roman', Times, serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
-        }
-        header {
-            text-align: center;
-            background-color: #333;
+            font-family: 'Poppins', sans-serif;
+            background-color: #0F172A;
             color: white;
-            padding: 20px 0;
+            overflow-x: hidden;
         }
-        header h1 {
-            margin: 0;
-            font-size: 2em;
+        
+        .gradient-text {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            justify-content: center;
+        
+        .gradient-text-2 {
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
-        nav ul li {
-            margin: 0 15px;
+        
+        .gradient-border {
+            position: relative;
+            border-radius: 1rem;
         }
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
+        
+        .gradient-border::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 1rem;
+            padding: 2px;
+            background: var(--gradient-1);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
         }
-        nav ul li a:hover {
-            color: #007BFF;
-        }
-        section {
-            padding: 20px;
-        }
-        img {
-            max-width: 40%;
-            height: auto;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-        p {
-            line-height: 1.6;
-        }
-        footer {
-            text-align: center;
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #333;
-            color: white;
-        }
-        .navigation-buttons {
-            text-align: center;
-            margin-top: 20px;
-        }
-        .navigation-buttons a {
-            text-decoration: none;
-        }
-        .navigation-buttons button {
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 1em;
+        
+        .skill-bar {
+            height: 10px;
             border-radius: 5px;
-            cursor: pointer;
-            margin: 0 10px;
-            font-family: 'Times New Roman', Times, serif;
+            background-color: rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            position: relative;
         }
-        .navigation-buttons button:hover {
-            background-color: #0056b3;
+        
+        .skill-progress {
+            height: 100%;
+            background: var(--gradient-1);
+            border-radius: 5px;
+            transition: width 1s ease-in-out;
+        }
+        
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-5px);
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background: var(--gradient-1);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .emoji-float {
+            animation: float 3s ease-in-out infinite;
+            display: inline-block;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .card {
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            background-color: rgba(17, 25, 40, 0.75);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .blob {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            filter: blur(100px);
+            opacity: 0.3;
+            z-index: -1;
+        }
+        
+        #blob1 {
+            top: -200px;
+            left: -200px;
+            background: var(--neon-pink);
+        }
+        
+        #blob2 {
+            bottom: 300px;
+            right: -200px;
+            background: var(--neon-purple);
+        }
+        
+        #blob3 {
+            bottom: -200px;
+            left: 300px;
+            background: var(--neon-blue);
+        }
+        
+        .progress-bar-animation {
+            animation: progress-animation 1.5s ease-in-out forwards;
+        }
+        
+        @keyframes progress-animation {
+            0% { width: 0%; }
+            100% { width: var(--progress); }
+        }
+        
+        .btn {
+            transition: all 0.3s ease;
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: -1;
+            transition: width 0.3s ease;
+        }
+        
+        .btn:hover::before {
+            width: 100%;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>About Me</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">HOME</a></li>
-                <li><a href="about.html">ABOUT</a></li>
-                <li><a href="menu.html">MENU</a></li>
-                <li><a href="recipe.html">RECIPE</a></li>
-            </ul>
-        </nav>
-    </header>
-    <section class="About">
-        <img src="about.jpg" alt="Profile picture">
-        <p>Hey, I'm Renjius Kinda Ouma.
-        A Passionate Microbiology Student & Future developer
-        
-        I’m currently pursuing a Bachelor's degree in Microbiology.From laboratory research to scientific analysis, I’m driven by curiosity and a deep love for science. My goal is to contribute to groundbreaking discoveries in microbiology and biotechnology.
-        </p>
-        <p><strong>Age:</strong> 20</p>
-        <p><strong>Residence:</strong> Juja</p>
-        <p><strong>Email:</strong> remjiuskinda78@gmail.com</p>
-        <p><strong>Phone:</strong> +254757606453</p>
-        <p><strong>Status:</strong> Single</p>
+    <!-- Background blobs -->
+    <div id="blob1" class="blob"></div>
+    <div id="blob2" class="blob"></div>
+    <div id="blob3" class="blob"></div>
 
-        <h3>Skills:</h3>
-        <ul>
-            <li>HTML & CSS</li>
-            <li>JavaScript</li>
-        </ul>
+    <!-- Header -->
+    <header class="py-6 px-4 md:px-10">
+        <div class="container mx-auto">
+            <div class="flex justify-between items-center">
+                <h1 class="text-2xl font-bold">
+                    <span class="gradient-text">Renjius</span><span class="text-white">.</span>
+                </h1>
+                <nav class="hidden md:block">
+                    <ul class="flex space-x-8">
+                        <li><a href="index.html" class="nav-link font-medium">HOME</a></li>
+                        <li><a href="about.html" class="nav-link font-medium text-pink-400">ABOUT</a></li>
+                        <li><a href="menu.html" class="nav-link font-medium">MENU</a></li>
+                        <li><a href="recipe.html" class="nav-link font-medium">RECIPE</a></li>
+                    </ul>
+                </nav>
+                <div class="md:hidden">
+                    <button class="text-white">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-10 px-4 md:px-10">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row items-center md:space-x-12">
+                <div class="w-full md:w-1/2 mb-10 md:mb-0">
+                    <div class="gradient-border p-1 w-72 h-72 mx-auto md:mx-0">
+                        <img src="about.jpg" alt="Renjius Kinda Ouma" class="w-full h-full object-cover rounded-2xl">
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-2">
+                        Hey there, I'm <span class="gradient-text">Renjius Kinda Ouma</span> <span class="emoji-float">👋</span>
+                    </h2>
+                    <h3 class="text-xl mb-6 opacity-90">
+                        <span class="gradient-text-2">Microbiology Student</span> & <span class="gradient-text">Future Developer</span>
+                    </h3>
+                    <p class="mb-6 text-gray-300 leading-relaxed">
+                        Currently vibing with bacteria and code <span class="emoji-float">🧫</span> <span class="emoji-float">💻</span>! 
+                        I'm on that science grind pursuing my Bachelor's in Microbiology while 
+                        lowkey teaching myself programming on the side. My lab coat has pockets full of 
+                        brilliant ideas and my laptop's filled with half-finished projects. No cap, I'm 
+                        obsessed with connecting the worlds of micro-organisms and technology!
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#" class="btn bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white px-6 py-3 rounded-full font-medium flex items-center">
+                            <i class="fas fa-envelope mr-2"></i> Contact Me
+                        </a>
+                        <a href="#" class="btn bg-transparent border border-white hover:bg-white hover:bg-opacity-10 text-white px-6 py-3 rounded-full font-medium flex items-center">
+                            <i class="fas fa-download mr-2"></i> Resume
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-10 px-4 md:px-10">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="card p-6 text-center">
+                    <h3 class="text-3xl md:text-4xl font-bold gradient-text mb-2">20</h3>
+                    <p class="text-gray-400">Age</p>
+                </div>
+                <div class="card p-6 text-center">
+                    <h3 class="text-3xl md:text-4xl font-bold gradient-text mb-2">2+</h3>
+                    <p class="text-gray-400">Years of Study</p>
+                </div>
+                <div class="card p-6 text-center">
+                    <h3 class="text-3xl md:text-4xl font-bold gradient-text mb-2">5+</h3>
+                    <p class="text-gray-400">Projects</p>
+                </div>
+                <div class="card p-6 text-center">
+                    <h3 class="text-3xl md:text-4xl font-bold gradient-text mb-2">∞</h3>
+                    <p class="text-gray-400">Ideas</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section class="py-10 px-4 md:px-10">
+        <div class="container mx-auto">
+            <h2 class="text-2xl md:text-3xl font-bold mb-8 text-center">
+                About <span class="gradient-text">Me</span> <span class="emoji-float">🔬</span>
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="card p-6">
+                    <h3 class="text-xl font-semibold mb-4 flex items-center">
+                        <i class="fas fa-user-circle text-pink-400 mr-3 text-2xl"></i>
+                        Personal Info
+                    </h3>
+                    <ul class="space-y-4">
+                        <li class="flex">
+                            <span class="w-24 text-gray-400">Residence:</span>
+                            <span>Juja</span>
+                        </li>
+                        <li class="flex">
+                            <span class="w-24 text-gray-400">Email:</span>
+                            <a href="mailto:remjiuskinda78@gmail.com" class="hover:text-pink-400 transition">remjiuskinda78@gmail.com</a>
+                        </li>
+                        <li class="flex">
+                            <span class="w-24 text-gray-400">Phone:</span>
+                            <a href="tel:+254757606453" class="hover:text-pink-400 transition">+254757606453</a>
+                        </li>
+                        <li class="flex">
+                            <span class="w-24 text-gray-400">Status:</span>
+                            <span>Single <span class="emoji-float">💯</span></span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card p-6">
+                    <h3 class="text-xl font-semibold mb-4 flex items-center">
+                        <i class="fas fa-rocket text-purple-400 mr-3 text-2xl"></i>
+                        Interests & Vibes
+                    </h3>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                        <div class="bg-gray-800 bg-opacity-50 p-3 rounded-lg text-center">
+                            <i class="fas fa-microscope text-2xl mb-2 text-pink-400"></i>
+                            <p>Microbiology</p>
+                        </div>
+                        <div class="bg-gray-800 bg-opacity-50 p-3 rounded-lg text-center">
+                            <i class="fas fa-code text-2xl mb-2 text-blue-400"></i>
+                            <p>Coding</p>
+                        </div>
+                        <div class="bg-gray-800 bg-opacity-50 p-3 rounded-lg text-center">
+                            <i class="fas fa-music text-2xl mb-2 text-green-400"></i>
+                            <p>Music</p>
+                        </div>
+                        <div class="bg-gray-800 bg-opacity-50 p-3 rounded-lg text-center">
+                            <i class="fas fa-gamepad text-2xl mb-2 text-purple-400"></i>
+                            <p>Gaming</p>
+                        </div>
+                        <div class="bg-gray-800 bg-opacity-50 p-3 rounded-lg text-center">
+                            <i class="fas fa-flask text-2xl mb-2 text-yellow-400"></i>
+                            <p>Research</p>
+                        </div>
+                        <div class="bg-gray-800 bg-opacity-50 p-3 rounded-lg text-center">
+                            <i class="fas fa-camera text-2xl mb-2 text-red-400"></i>
+                            <p>Photography</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="py-10 px-4 md:px-10">
+        <div class="container mx-auto">
+            <h2 class="text-2xl md:text-3xl font-bold mb-8 text-center">
+                My <span class="gradient-text">Skills</span> <span class="emoji-float">💪</span>
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="card p-6">
+                    <h3 class="text-xl font-semibold mb-6 flex items-center">
+                        <i class="fas fa-laptop-code text-pink-400 mr-3 text-2xl"></i>
+                        Tech Skills
+                    </h3>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span>HTML & CSS</span>
+                                <span>75%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--progress: 75%; width: 75%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span>JavaScript</span>
+                                <span>60%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--progress: 60%; width: 60%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span>React</span>
+                                <span>40%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--progress: 40%; width: 40%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span>UI/UX Design</span>
+                                <span>55%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--progress: 55%; width: 55%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card p-6">
+                    <h3 class="text-xl font-semibold mb-6 flex items-center">
+                        <i class="fas fa-flask text-purple-400 mr-3 text-2xl"></i>
+                        Science Skills
+                    </h3>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span>Microbiology</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--progress: 85%; width: 85%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span>Laboratory Techniques</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--progress: 80%; width: 80%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span>Data Analysis</span>
+                                <span>70%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--progress: 70%; width: 70%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span>Scientific Writing</span>
+                                <span>75%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--progress: 75%; width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education & Experience -->
+    <section class="py-10 px-4 md:px-10">
+        <div class="container mx-auto">
+            <h2 class="text-2xl md:text-3xl font-bold mb-8 text-center">
+                Education & <span class="gradient-text">Experience</span> <span class="emoji-float">🎓</span>
+            </h2>
+            <div class="card p-6 mb-8">
+                <div class="flex flex-col md:flex-row">
+                    <div class="md:w-1/4 mb-4 md:mb-0">
+                        <div class="bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-lg py-2 px-4 inline-block font-medium">
+                            2021 - Present
+                        </div>
+                    </div>
+                    <div class="md:w-3/4">
+                        <h3 class="text-xl font-bold mb-2">Bachelor of Science in Microbiology</h3>
+                        <p class="text-pink-400 mb-4">Jomo Kenyatta University of Agriculture and Technology</p>
+                        <p class="text-gray-300">
+                            Currently slaying the microbiology game with a focus on biotechnology and genetic engineering. 
+                            Learning about the bacteria besties and virus villains that shape our world.
+                            No cap, these microorganisms are low-key fascinating! <span class="emoji-float">🧬</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="card p-6">
+                <div class="flex flex-col md:flex-row">
+                    <div class="md:w-1/4 mb-4 md:mb-0">
+                        <div class="bg-gradient-to-r from-blue-500 to-green-500 text-white rounded-lg py-2 px-4 inline-block font-medium">
+                            2023 - Present
+                        </div>
+                    </div>
+                    <div class="md:w-3/4">
+                        <h3 class="text-xl font-bold mb-2">Self-taught Web Development Journey</h3>
+                        <p class="text-blue-400 mb-4">Online Courses & Personal Projects</p>
+                        <p class="text-gray-300">
+                            Caught in my coding era <span class="emoji-float">⌨️</span>, teaching myself HTML, CSS, and JavaScript through 
+                            online courses, YouTube tutorials, and lots of trial and error. Building projects on the side 
+                            while balancing academic responsibilities. The struggle is real but so worth it!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects/Future Goals -->
+    <section class="py-10 px-4 md:px-10">
+        <div class="container mx-auto">
+            <h2 class="text-2xl md:text-3xl font-bold mb-8 text-center">
+                Future <span class="gradient-text">Goals</span> <span class="emoji-float">🚀</span>
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="card p-6 hover:bg-gradient-to-br hover:from-pink-500/10 hover:to-purple-600/10">
+                    <div class="bg-gradient-to-r from-pink-500 to-purple-600 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-laptop-medical text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Bioinformatics Expert</h3>
+                    <p class="text-gray-300">
+                        Tryna merge my microbiology knowledge with coding skills to develop bioinformatics 
+                        solutions. The ultimate science-tech collab! <span class="emoji-float">🧪</span>
+                    </p>
+                </div>
+                <div class="card p-6 hover:bg-gradient-to-br hover:from-blue-500/10 hover:to-green-500/10">
+                    <div class="bg-gradient-to-r from-blue-500 to-green-500 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-vial text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Research Scientist</h3>
+                    <p class="text-gray-300">
+                        Dreaming of contributing to groundbreaking research in microbiology and 
+                        biotechnology. Making discoveries that could literally change the game! <span class="emoji-float">🔬</span>
+                    </p>
+                </div>
+                <div class="card p-6 hover:bg-gradient-to-br hover:from-purple-500/10 hover:to-pink-500/10">
+                    <div class="bg-gradient-to-r from-purple-500 to-pink-500 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-globe text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Tech Startup Founder</h3>
+                    <p class="text-gray-300">
+                        Low-key planning to launch a biotech startup that develops innovative solutions 
+                        for healthcare challenges. Entrepreneurship is the vibe! <span class="emoji-float">💼</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media -->
+    <section class="py-10 px-4 md:px-10">
+        <div class="container mx-auto">
+            <h2 class="text-2xl md:text-3xl font-bold mb-8 text-center">
+                Let's <span class="gradient-text">Connect</span> <span class="emoji-float">🔗</span>
+            </h2>
+            <div class="flex justify-center space-x-6">
+                <a href="#" class="social-icon bg-gradient-to-r from-pink-500 to-purple-600 w-14 h-14 rounded-full flex items-center justify-center text-white text-2xl">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://github.com/Rem533" class="social-icon bg-gradient-to-r from-gray-700 to-gray-900 w-14 h-14 rounded-full flex items-center justify-center text-white text-2xl">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+        </div>
     </section>
 
     <!-- Navigation Buttons -->
-    <div class="navigation-buttons">
-        <a href="home.html">
-            <button>Previous</button>
-        </a>
-        <a href="menu.html"> 
-            <button>Next</button>
-        </a>
+    <div class="py-10 px-4 md:px-10">
+        <div class="container mx-auto flex justify-center space-x-4">
+            <a href="index.html" class="btn bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white px-6 py-3 rounded-full font-medium flex items-center">
+                <i class="fas fa-arrow-left mr-2"></i> Previous
+            </a>
+            <a href="menu.html" class="btn bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600 text-white px-6 py-3 rounded-full font-medium flex items-center">
+                Next <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
     </div>
 
-    <footer>
-        <p>&copy; 2025 My Portfolio</p>
+    <!-- Footer -->
+    <footer class="py-8 px-4 md:px-10 border-t border-gray-800">
+        <div class="container mx-auto">
+            <div class="text-center">
+                <h3 class="text-xl font-bold mb-3">
+                    <span class="gradient-text">Remjius</span> Kinda Ouma
+                </h3>
+                <p class="mb-4 text-gray-400">Bacteria Bestie & Code Connoisseur <span class="emoji-float">🦠</span></p>
+                <p class="text-gray-500">
+                    &copy; 2025 My Portfolio | Designed with <span class="text-red-500">❤️</span> and a whole lotta vibe checks
+                </p>
+            </div>
+        </div>
     </footer>
+
+    <script>
+        // Simple animation for skill bars when in viewport
+        function animateSkillBars() {
+            const skillBars = document.querySelectorAll('.skill-progress');
+            
+            skillBars.forEach(bar => {
+                const progress = bar.style.getPropertyValue('--progress');
+                bar.style.width = '0%';
+                
+                setTimeout(() => {
+                    bar.style.width = progress;
+                }, 300);
+            });
+        }
+        
+        // Animate emoji floats with random timing
+        function setupEmojiFloats() {
+            const emojis = document.querySelectorAll('.emoji-float');
+            
+            emojis.forEach(emoji => {
+                const randomDelay = Math.random() * 2;
+                emoji.style.animationDelay = `${randomDelay}s`;
+            });
+        }
+        
+        // Execute animations on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            animateSkillBars();
+            setupEmojiFloats();
+        });
+    </script>
 </body>
 </html>

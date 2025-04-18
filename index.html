@@ -1,41 +1,493 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
-    <title>HOME</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remjius Kinda's Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #121212;
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: linear-gradient(135deg, rgba(76, 5, 113, 0.8) 0%, rgba(35, 7, 77, 0.8) 100%);
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        /* Animated background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bg-animation span {
+            position: absolute;
+            display: block;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: move 8s linear infinite;
+        }
+
+        .bg-animation span:nth-child(1) {
+            top: 10%;
+            left: 20%;
+            animation-duration: 15s;
+            animation-delay: 0s;
+            transform-origin: 15vw 15vh;
+            box-shadow: 0 0 20px 4px rgba(255, 255, 255, 0.1);
+        }
+
+        .bg-animation span:nth-child(2) {
+            top: 40%;
+            left: 80%;
+            animation-duration: 18s;
+            animation-delay: 1s;
+            transform-origin: 10vw 10vh;
+            box-shadow: 0 0 20px 4px rgba(255, 255, 255, 0.1);
+        }
+
+        .bg-animation span:nth-child(3) {
+            top: 80%;
+            left: 10%;
+            animation-duration: 20s;
+            animation-delay: 2s;
+            transform-origin: 20vw 25vh;
+            box-shadow: 0 0 20px 4px rgba(255, 255, 255, 0.1);
+        }
+
+        .bg-animation span:nth-child(4) {
+            top: 90%;
+            left: 50%;
+            animation-duration: 22s;
+            animation-delay: 3s;
+            transform-origin: 20vw 20vh;
+            box-shadow: 0 0 20px 4px rgba(255, 255, 255, 0.1);
+        }
+
+        .bg-animation span:nth-child(5) {
+            top: 20%;
+            left: 60%;
+            animation-duration: 25s;
+            animation-delay: 4s;
+            transform-origin: 15vw 10vh;
+            box-shadow: 0 0 20px 4px rgba(255, 255, 255, 0.1);
+        }
+
+        @keyframes move {
+            0% {
+                transform: scale(1) translate(0, 0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(2) translate(-100px, 100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Header styles */
+        header {
+            padding: 30px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 10;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            font-size: 1.8em;
+            font-weight: bold;
+            background: linear-gradient(to right, #ff6b6b, #7c4dff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            position: relative;
+            padding: 5px 0;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, #ff6b6b, #7c4dff);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #ff6b6b;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero section styles */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 85vh;
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(124, 77, 255, 0.2) 0%, rgba(0, 0, 0, 0) 70%);
+            z-index: -1;
+        }
+
+        .hero h1 {
+            font-size: 4.5em;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #ff6b6b, #7c4dff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            font-size: 1em;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            cursor: pointer;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, #ff6b6b, #7c4dff);
+            z-index: -1;
+            transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        .btn-primary {
+            color: #fff;
+            border: none;
+        }
+
+        .btn-primary::before {
+            transform: scaleX(1);
+        }
+
+        .btn-primary:hover::before {
+            transform: scaleX(1.1) scaleY(1.1);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3);
+        }
+
+        .btn-secondary {
+            color: #fff;
+            border: 2px solid #ff6b6b;
+            background: transparent;
+        }
+
+        .btn-secondary::before {
+            transform: scaleX(0);
+            transform-origin: right;
+        }
+
+        .btn-secondary:hover::before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3);
+        }
+
+        /* Contact section */
+        .contact {
+            background-color: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 50px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #fff;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+            background-color: rgba(255, 107, 107, 0.2);
+        }
+
+        .contact-item i {
+            color: #ff6b6b;
+            font-size: 1.2em;
+        }
+
+        /* Social media */
+        .social-media {
+            margin-top: 30px;
+        }
+
+        .social-media a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin: 0 10px;
+            color: #fff;
+            font-size: 1.2em;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-media a:hover {
+            transform: translateY(-5px) rotate(10deg);
+            background-color: #ff6b6b;
+            color: #fff;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            text-align: center;
+            font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 20px;
+            }
+
+            nav ul {
+                margin-top: 20px;
+            }
+
+            nav ul li {
+                margin: 0 10px;
+            }
+
+            .hero h1 {
+                font-size: 2.5em;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>
-    <h1>Remjius Kinda's PORTFOLIO</h1>
-    <link rel="stylesheet" href="style.css">
-    
-    <nav>
-        <ul>
-            <li><a href="index.html">HOME</a></li>
-            <li><a href="about.html">ABOUT</a></li>
-            <li><a href="menu.html">MENU</a></li>
-            <li><a href="recipe.html">RECIPE</a></li>
-        </ul>
-    </nav>
-</header>
-              
-    
-    <header>
-    <section class="hero">
-        <h2>WELCOME TO MY PORTFOLIO</h2> 
-        <p>Hey am Remjius Kinda Ouma , a passionate microbiology student and developer. Im currently pursuing a bachelors degree in microbioogy where i explore the fascinating world of microorganisms.
-            From laboratory research to scientific analysis, I’m driven by curiosity and a deep love for science. My goal is to contribute to groundbreaking discoveries in microbiology and biotechnology. </p>
-            <img src="about.jpg" alt="My profile image">
-            <a href="about.html" class="btn">learn more</a>
-    </section>
-    <footer>
-        
-        <p>CONTACT 0757606453 EMAIL: remjiuskinda78@gmail.com</p>
-        <p>Social media :<a href="https://www.instagram.com/rem -genius">instagram</a>
-        
-        </p>&copy; 2025 Remjius Kinda Ouma. All rights reserved
+    <!-- Animated background -->
+    <div class="bg-animation">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
 
+    <header>
+        <div class="logo">Remjius Kinda</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="about.html">ABOUT</a></li>
+                <li><a href="menu.html">MENU</a></li>
+                <li><a href="recipe.html">RECIPES</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>WELCOME TO MY PORTFOLIO</h1>
+        <p>Hey, I'm Remjius Kinda Ouma, a passionate microbiology student and developer. I'm currently pursuing a bachelor's degree in microbiology where I explore the fascinating world of microorganisms. From laboratory research to scientific analysis, I'm driven by curiosity and a deep love for science. My goal is to contribute to groundbreaking discoveries in microbiology and biotechnology.</p>
+        <div class="hero-buttons">
+            <a href="about.html" class="btn btn-primary">Learn More</a>
+            <a href="#contact" class="btn btn-secondary">Contact Me</a>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="contact-info">
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <span>0757606453</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <span>remjiuskinda78@gmail.com</span>
+            </div>
+        </div>
+        
+        <div class="social-media">
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    </section>
+
+    <footer>
+        © 2025 Remjius Kinda Ouma. All rights reserved
     </footer>
-    
+
+    <script>
+        // Smooth scrolling for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Hover animations for buttons
+        const buttons = document.querySelectorAll('.btn');
+        
+        buttons.forEach(button => {
+            button.addEventListener('mouseenter', () => {
+                button.style.transform = 'translateY(-5px)';
+            });
+            
+            button.addEventListener('mouseleave', () => {
+                button.style.transform = 'translateY(0)';
+            });
+        });
+        
+        // Fade-in animation on scroll
+        const fadeElements = document.querySelectorAll('.hero, .contact');
+        
+        function checkScroll() {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        }
+        
+        // Set initial opacity
+        fadeElements.forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        });
+        
+        // Check on page load and scroll
+        window.addEventListener('load', checkScroll);
+        window.addEventListener('scroll', checkScroll);
+    </script>
 </body>
 </html>

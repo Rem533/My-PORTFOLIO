@@ -4,135 +4,487 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu - My Favourite Food</title>
+    <!-- Import Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-            font-family: 'Times New Roman', Times, serif; /* Set font to Times New Roman */
+        :root {
+            --primary: #FF5678;
+            --secondary: #7D56F9;
+            --accent: #00D1CD;
+            --background: #121212;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text: #FFFFFF;
+            --text-secondary: rgba(255, 255, 255, 0.7);
+        }
+        
+        * {
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9;
+            box-sizing: border-box;
         }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 86, 120, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 90% 30%, rgba(125, 86, 249, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 50% 80%, rgba(0, 209, 205, 0.1) 0%, transparent 40%);
+            background-attachment: fixed;
+        }
+        
         header {
-            text-align: center;
-            background-color: #333;
-            color: white;
-            padding: 20px 0;
+            padding: 30px 5%;
+            position: relative;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            background: rgba(18, 18, 18, 0.8);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
-        header h1 {
-            margin: 0;
-            font-size: 2em;
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        nav {
-            margin-top: 10px;
+        
+        .logo {
+            font-size: 1.8em;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
         }
+        
         nav ul {
             list-style-type: none;
-            padding: 0;
-            margin: 0;
             display: flex;
-            justify-content: center;
+            gap: 20px;
         }
-        nav ul li {
-            margin: 0 15px;
-        }
+        
         nav ul li a {
-            color: white;
+            color: var(--text);
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 500;
+            font-size: 1.1em;
+            letter-spacing: 0.5px;
+            padding: 10px 15px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
-        nav ul li a:hover {
-            color: #007BFF;
-        }
-        table {
+        
+        nav ul li a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
+            height: 100%;
+            background: linear-gradient(120deg, var(--primary), var(--secondary));
+            opacity: 0;
+            transform: translateY(100%);
+            transition: all 0.3s ease;
+            z-index: -1;
+            border-radius: 12px;
         }
-        th, td {
-            padding: 10px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
+        
+        nav ul li a:hover {
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
-        th {
-            background-color: #f2f2f2;
+        
+        nav ul li a:hover::before {
+            opacity: 1;
+            transform: translateY(0);
         }
-        img {
-            max-width: 50%;
-            height: auto;
-            border-radius: 8px;
+        
+        main {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
         }
+        
+        h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+        
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .menu-item {
+            background: var(--card-bg);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(255, 86, 120, 0.2);
+            border-color: rgba(255, 86, 120, 0.3);
+        }
+        
+        .menu-item-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .menu-item:hover .menu-item-image {
+            transform: scale(1.1);
+        }
+        
+        .menu-item-content {
+            padding: 20px;
+        }
+        
+        .menu-item-title {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            font-weight: 600;
+            color: var(--text);
+        }
+        
+        .menu-item-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            font-size: 0.8em;
+            font-weight: 600;
+            padding: 8px 15px;
+            border-radius: 30px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 5px 15px rgba(255, 86, 120, 0.3);
+        }
+        
+        .recipe-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .btn {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 25px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text);
+            font-size: 1em;
+            font-weight: 600;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+            gap: 10px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border: none;
+        }
+        
+        .btn-secondary {
+            background: rgba(125, 86, 249, 0.1);
+            border: 1px solid rgba(125, 86, 249, 0.3);
+        }
+        
+        .btn-accent {
+            background: rgba(0, 209, 205, 0.1);
+            border: 1px solid rgba(0, 209, 205, 0.3);
+        }
+        
+        .btn-neutral {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-primary:hover {
+            box-shadow: 0 10px 25px rgba(255, 86, 120, 0.3);
+        }
+        
+        .btn-secondary:hover {
+            box-shadow: 0 10px 25px rgba(125, 86, 249, 0.2);
+            background: rgba(125, 86, 249, 0.15);
+        }
+        
+        .btn-accent:hover {
+            box-shadow: 0 10px 25px rgba(0, 209, 205, 0.2);
+            background: rgba(0, 209, 205, 0.15);
+        }
+        
+        .btn i {
+            font-size: 1.2em;
+        }
+        
         footer {
             text-align: center;
-            margin-top: 20px;
-            font-size: 0.9em;
-            color: #777;
+            padding: 30px 0;
+            background: rgba(18, 18, 18, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
         }
-        .recipe-buttons {
-            text-align: center;
-            margin-top: 20px;
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
         }
-        .recipe-buttons a {
-            text-decoration: none;
+        
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text);
+            font-size: 1.2em;
+            transition: all 0.3s ease;
         }
-        .recipe-buttons button {
-            background-color: #007BFF;
+        
+        .social-links a:hover {
+            transform: translateY(-5px);
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
             color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 1em;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 0 10px;
-            font-family: 'Times New Roman', Times, serif; /* Set font for buttons */
         }
-        .recipe-buttons button:hover {
-            background-color: #0056b3;
+        
+        /* Floating elements for Gen Z vibes */
+        .floating-shape {
+            position: fixed;
+            border-radius: 50%;
+            z-index: -1;
+            filter: blur(80px);
+        }
+        
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 86, 120, 0.15);
+            top: -100px;
+            left: -100px;
+            animation: float 20s infinite alternate;
+        }
+        
+        .shape-2 {
+            width: 400px;
+            height: 400px;
+            background: rgba(125, 86, 249, 0.15);
+            bottom: -150px;
+            right: -150px;
+            animation: float 25s infinite alternate-reverse;
+        }
+        
+        .shape-3 {
+            width: 200px;
+            height: 200px;
+            background: rgba(0, 209, 205, 0.15);
+            bottom: 30%;
+            left: 10%;
+            animation: float 18s infinite alternate;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            50% {
+                transform: translate(100px, 50px) rotate(180deg);
+            }
+            100% {
+                transform: translate(50px, 100px) rotate(360deg);
+            }
+        }
+        
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .recipe-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Floating background shapes for Gen Z aesthetic -->
+    <div class="floating-shape shape-1"></div>
+    <div class="floating-shape shape-2"></div>
+    <div class="floating-shape shape-3"></div>
+
     <header>
-        <h1>Recipe 1</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">HOME</a></li>
-                <li><a href="about.html">ABOUT</a></li>
-                <li><a href="menu.html">MENU</a></li>
-                <li><a href="recipe.html">RECIPE</a></li>
-            </ul>
-        </nav>
+        <div class="header-container">
+            <div class="logo">FlavorsHub</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="about.html">ABOUT</a></li>
+                    <li><a href="menu.html">MENU</a></li>
+                    <li><a href="recipe.html">RECIPE</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <h2>Menu</h2>
-    <table>
-        <tr>
-            <td><strong>Beef Pilau</strong></td>
-            <td><img src="Exquisite Afghan Kabuli Pulao Delight.jpeg" alt="Beef Pilau"></td>
-        </tr>
-        <tr>
-            <td><strong>Omellete</strong></td>
-            <td><img src="Fluffy omelette with peppers, onion, spinach….jpeg" alt="Biryani"></td>
-        </tr>
-    </table>
+    <main>
+        <h2>Featured Menu</h2>
+        
+        <div class="menu-grid">
+            <div class="menu-item">
+                <div class="menu-item-badge">Popular</div>
+                <img src="Exquisite Afghan Kabuli Pulao Delight.jpeg" alt="Beef Pilau" class="menu-item-image">
+                <div class="menu-item-content">
+                    <h3 class="menu-item-title">Beef Pilau</h3>
+                    <a href="recipe2.html" class="btn btn-primary">
+                        <i class="fas fa-utensils"></i>
+                        View Recipe
+                    </a>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="menu-item-badge">Quick Fix</div>
+                <img src="Fluffy omelette with peppers, onion, spinach….jpeg" alt="Omelette" class="menu-item-image">
+                <div class="menu-item-content">
+                    <h3 class="menu-item-title">Fluffy Omelette</h3>
+                    <a href="recipe.html" class="btn btn-primary">
+                        <i class="fas fa-utensils"></i>
+                        View Recipe
+                    </a>
+                </div>
+            </div>
+        </div>
 
-    <!-- Recipe Buttons -->
-    <div class="recipe-buttons">
-        <a href="home.html">
-            <button>Home</button>
-        </a>
-        <a href="recipe2.html">
-            <button>View Beef Pilau Recipe</button>
-        </a>
-        <a href="recipe.html">
-            <button>View omelette Recipe</button>
-        </a>
-        <a href="about.html">
-            <button>previous</button>
-        </a>
-
-    </div>
+        <!-- Recipe Buttons with modern Gen Z styling -->
+        <div class="recipe-buttons">
+            <a href="home.html" class="btn btn-secondary">
+                <i class="fas fa-home"></i>
+                Home
+            </a>
+            <a href="recipe2.html" class="btn btn-primary">
+                <i class="fas fa-utensils"></i>
+                Beef Pilau Recipe
+            </a>
+            <a href="recipe.html" class="btn btn-primary">
+                <i class="fas fa-egg"></i>
+                Omelette Recipe
+            </a>
+            <a href="about.html" class="btn btn-accent">
+                <i class="fas fa-arrow-left"></i>
+                Previous
+            </a>
+        </div>
+    </main>
 
     <footer>
-        © 2025 My Portfolio
+        <p>© 2025 FlavorsHub | All rights reserved</p>
     </footer>
+
+    <!-- Simple animation script for additional Gen Z aesthetic -->
+    <script>
+        // Add hover effect sound (optional)
+        const buttons = document.querySelectorAll('.btn');
+        
+        buttons.forEach(button => {
+            button.addEventListener('mouseenter', () => {
+                button.style.transform = 'translateY(-5px)';
+            });
+            
+            button.addEventListener('mouseleave', () => {
+                button.style.transform = 'translateY(0)';
+            });
+        });
+        
+        // Add scroll reveal effect
+        window.addEventListener('scroll', () => {
+            const menuItems = document.querySelectorAll('.menu-item');
+            
+            menuItems.forEach(item => {
+                const itemTop = item.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (itemTop < windowHeight - 100) {
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
